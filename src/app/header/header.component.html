@@ -1,0 +1,35 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="nav-bar-header">
+            <a routerLink="/" [routerLinkActiveOptions]="{exact: true}"
+            routerLinkActive="active" class="navbar-brand">Livro de Receitas</a>
+        </div>
+        <div class="navbar-default">
+            <ul class="nav navbar-nav">
+                <li routerLinkActive="active" >
+                    <a routerLink="/receita" >Receitas</a>
+                </li>
+                <li routerLinkActive="active">
+                    <a routerLink="/compras"  >Compras</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <ng-template [ngIf]="!authService.isAuthenticated()">
+                    <li routerLinkActive="active"><a routerLink="/singin">Login</a></li>
+                    <li routerLinkActive="active"><a routerLink="/singup">Registrar</a></li>
+                </ng-template>
+                <ng-template [ngIf]="authService.isAuthenticated()">
+                    <li routerLinkActive="active"><a style="cursor: pointer;" (click)="onLogOut()">Log out</a></li>
+                </ng-template>
+                <li class="dropdown" appDropdown *ngIf="authService.isAuthenticated()">
+                    <a style="cursor:pointer" class="dropdown-toggle" role="button">Gerenciar <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a style="cursor:pointer" (click)="onSaveData()">Salvar</a></li>
+                        <li><a style="cursor:pointer" (click)="onUpdateData()">Atualizar</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>

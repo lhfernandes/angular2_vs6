@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" [disabled]="!recipeForm.valid" class="btn btn-success">Salvar</button>
+          <button class="btn btn-danger" (click)="onCancel()">Cancelar</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" id="name" formControlName="name" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imgPath">Imagem URL</label>
+            <input type="text" #imgpath id="imgPath" formControlName="imgPath" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <img [src]="imgpath.value" class="img-responsive">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Descrição</label>
+            <textarea id="description" class="form-control" formControlName="description" rows="6"></textarea>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="button" class="btn btn-success" (click)="onAddIngredient()">
+            Adicionar Ingrediente</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12" formArrayName="ingredients">
+          <div class="row" *ngFor="let ingredientctrl of recipeForm.get('ingredients').controls;
+          let i = index" [formGroupName]="i" style="margin-top:10px">
+            <div class="col-xs-9">
+              <input type="text" formControlName="name"
+              placeholder="Digite o nome do Ingrediente" class="form-control">
+            </div>
+            <div class="col-xs-2">
+              <input type="number" placeholder="QTD"   formControlName="amount"
+               class="form-control">
+            </div>
+            <div class="col-xs-1">
+              <button type="button" class="btn btn-danger pull-right" (click)="onRemoveIngredient(i)">X</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

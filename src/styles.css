@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+form.ng-touched input.ng-invalid,
+form.ng-touched textarea.ng-invalid,
+form.ng-touched option.ng-invalid,
+form.ng-touched select.ng-invalid
+{
+  border: 1px solid #fa522b;
+}
+
